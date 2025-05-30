@@ -34,7 +34,7 @@ const Product = () => {
                     <p className="d-flex align-items-center m-0">Add Product</p>
                 </button>
             </div>
-            <ul className="d-flex flex-wrap gap-5 list-unstyled">
+            <ul className="d-flex flex-wrap gap-3 gap-md-5 list-unstyled">
                 {products.map((product) => 
                     <ProductItem key={product.name} thumbnail={product.src} name={product.name} desc={product.desc} price={product.price} />
                 )}

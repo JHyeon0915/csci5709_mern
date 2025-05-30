@@ -4,7 +4,7 @@ const ProductItem = ({ thumbnail, name, desc, price }) => {
     console.log(thumbnail);
     
     return (
-        <li className="h-fit-content rounded border border-dark" style={{ width: '15rem' }}>
+        <li className="h-fit-content rounded border border-secondary" style={{ width: '16rem' }}>
             <img src={thumbnail} alt="product image" width="100%" height="230rem" className="rounded ratio ratio-1x1"/>
             <div className="p-3">
                 <h5>{name}</h5>
