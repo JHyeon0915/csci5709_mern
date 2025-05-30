@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Image from '../assets/react.svg';
 
 const Home = () => {
     return(
@@ -15,7 +14,12 @@ const Home = () => {
                     <Link className='text-black text-decoration-none' to='/product'>Explore Products</Link>
                 </button>
             </div>
-            <img src={Image} width='300rem' height='50%' style={{ objectFit: 'cover', marginLeft: '3%' }} />
+            <img
+                src="https://static.vecteezy.com/system/resources/thumbnails/026/593/215/small_2x/3d-white-clipboard-icon-task-management-todo-check-list-on-turquose-plane-background-work-project-plan-concept-isolated-transparent-posting-plan-productivity-checklist-png.png"
+                width='300rem'
+                height='50%'
+                style={{ objectFit: 'cover', marginLeft: '3%' }}
+            />
         </div>
     )
 }
