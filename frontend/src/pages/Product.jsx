@@ -31,19 +31,20 @@ const Product = () => {
                     <p className="d-flex align-items-center m-0">Add Product</p>
                 </button>
             </div>
-            <ul className="d-flex flex-wrap gap-3 gap-md-5 list-unstyled">
-                {products.map((product) => 
-                    <ProductItem
-                        key={product.name}
-                        name={product.name}
-                        thumbnail={product.thumbnail}
-                        desc={product.desc}
-                        price={product.price}
-                        deleteProduct={deleteProduct}
-                    />
-                )}
-            </ul>
-
+            {products.length === 0 ? <NoItem /> :
+                <ul className="d-flex flex-wrap gap-3 gap-md-5 list-unstyled">
+                    {products.map((product) => 
+                        <ProductItem
+                            key={product.name}
+                            name={product.name}
+                            thumbnail={product.thumbnail}
+                            desc={product.desc}
+                            price={product.price}
+                            deleteProduct={deleteProduct}
+                        />
+                    )}
+                </ul>
+            }
             {/* Modal */}
             <AddProductModal modalOpen={modalOpen} setModalOpen={setModalOpen} setProducts={setProducts} />
       </div>
