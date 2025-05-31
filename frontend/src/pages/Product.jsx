@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
 import ProductItem from '../components/ProductItem';
 import AddProductModal from '../components/AddProductModal';
+import NoItem from '../components/NoItem';
 
 const Product = () => {
     const [products, setProducts] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
+
+    const deleteProduct = (name) => {
+        const confirmed = confirm(`Deleted products can't be reverted. Would you proceed to delete this product?`);
+
+        if(!confirmed){
+            return;
+        }
+
+        setProducts(products.filter(product => product.name !== name));
+    }
 
     return(
         <div style={{ paddingLeft: '7rem', paddingRight: '7rem'}}>
@@ -22,7 +33,14 @@ const Product = () => {
             </div>
             <ul className="d-flex flex-wrap gap-3 gap-md-5 list-unstyled">
                 {products.map((product) => 
-                    <ProductItem key={product.name} thumbnail={product.thumbnail} name={product.name} desc={product.desc} price={product.price} />
+                    <ProductItem
+                        key={product.name}
+                        name={product.name}
+                        thumbnail={product.thumbnail}
+                        desc={product.desc}
+                        price={product.price}
+                        deleteProduct={deleteProduct}
+                    />
                 )}
             </ul>
 
