@@ -1,11 +1,26 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createProduct } from '../redux/actions/productActions';
 import { Modal, Button } from 'react-bootstrap';
 
-const AddProductModal = ({ modalOpen, setModalOpen, setProducts }) => {
+const AddProductModal = ({ modalOpen, setModalOpen }) => {
+    const dispatch = useDispatch();
+
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
     const [price, setPrice] = useState('');
     const [thumbnail, setThumbnail] = useState('');
+
+    const closeModal = () => {
+      // Reset form fields
+      setName('');
+      setDesc('');
+      setPrice('');
+      setThumbnail('');
+
+      // Close the modal
+      setModalOpen(false);
+    };
 
     const addProduct = () => {
         if (!name || !desc || !price || !thumbnail) {
@@ -13,17 +28,15 @@ const AddProductModal = ({ modalOpen, setModalOpen, setProducts }) => {
             return;
         }
 
-        setProducts(prev => [
-            ...prev,
-            { name, desc, price, thumbnail }
-          ]);
-          setModalOpen(false);
-  
-          // Reset form
-          setName('');
-          setDesc('');
-          setPrice('');
-          setThumbnail('');
+        const newProduct = {
+            name,
+            desc,
+            price: parseFloat(price), // Ensure price is a number
+            thumbnail,
+        }
+
+        dispatch(createProduct(newProduct));
+        closeModal();
     }
 
     return (
@@ -72,7 +85,7 @@ const AddProductModal = ({ modalOpen, setModalOpen, setProducts }) => {
                 </Modal.Body>
                 <Modal.Footer>
                   <Button variant="primary" onClick={addProduct}>Add</Button>
-                  <Button variant="secondary" onClick={() => setModalOpen(false)}>Close</Button>
+                  <Button variant="secondary" onClick={closeModal}>Close</Button>
                 </Modal.Footer>
             </Modal>
     );

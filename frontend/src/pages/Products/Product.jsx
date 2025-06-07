@@ -1,24 +1,38 @@
-import React, { useState } from 'react';
-import ProductItem from '../components/ProductItem';
-import AddProductModal from '../components/AddProductModal';
-import NoItem from '../components/NoItem';
+import React, { useState, useEffect } from 'react';
+import ProductItem from '../../components/ProductItem';
+import AddProductModal from '../../components/AddProductModal';
+import NoItem from '../../components/NoItem';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+    fetchProducts,
+    deleteProduct,
+} from '../../redux/actions/productActions';
 
 const Product = () => {
-    const [products, setProducts] = useState([]);
+    const dispatch = useDispatch();
+
+    const { items, loading } = useSelector(state => state.products);
     const [modalOpen, setModalOpen] = useState(false);
 
-    const deleteProduct = (name) => {
+    // loading, createLoading, updateLoading, deleteLoading, error
+    useEffect(() => {
+        dispatch(fetchProducts());
+    }, [dispatch]);
+
+    const handleDelete = (product) => {
         const confirmed = confirm(`Deleted products can't be reverted. Would you proceed to delete this product?`);
 
         if(!confirmed){
             return;
         }
 
-        setProducts(products.filter(product => product.name !== name));
+        console.log(`Deleting product with ID: ${product.id}`);
+        dispatch(deleteProduct(product.id));
     }
 
     return(
         <div style={{ paddingLeft: '7rem', paddingRight: '7rem'}}>
+            {loading && <div>fetching data...</div>}
             <div className="d-flex justify-content-end">
                 <button
                   className="d-flex align-items-center gap-1 w-fit-content my-4 bg-primary text-white rounded"
@@ -31,22 +45,19 @@ const Product = () => {
                     <p className="d-flex align-items-center m-0">Add Product</p>
                 </button>
             </div>
-            {products.length === 0 ? <NoItem /> :
+            {items.length === 0 ? <NoItem /> :
                 <ul className="d-flex flex-wrap gap-3 gap-md-5 list-unstyled">
-                    {products.map((product) => 
+                    {items.map((product) => 
                         <ProductItem
-                            key={product.name}
-                            name={product.name}
-                            thumbnail={product.thumbnail}
-                            desc={product.desc}
-                            price={product.price}
-                            deleteProduct={deleteProduct}
+                            key={product.id}
+                            product={product}
+                            handleDelete={handleDelete}
                         />
                     )}
                 </ul>
             }
             {/* Modal */}
-            <AddProductModal modalOpen={modalOpen} setModalOpen={setModalOpen} setProducts={setProducts} />
+            <AddProductModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       </div>
     )
 }
