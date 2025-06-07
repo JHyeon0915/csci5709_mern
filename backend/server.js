@@ -8,13 +8,17 @@ app.use(cors());
 
 app.use(express.json()); // Allow JSON body parsing
 
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
+
 // In-memory products array
 let products = [];
 let currentId = 1;
 
 // Create
 app.post('/api/products', (req, res) => {
-    const product = { id: currentId++, ...req.body };
+    const newProduct = { id: currentId++, ...req.body };
     products.push(newProduct);
     res.status(201).json(newProduct);
 });
