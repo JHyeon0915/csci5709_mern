@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Product from './pages/Products/Product';
 import Contact from './pages/Contact';
 import Header from './components/Header';
+import Signup from './pages/Auths/Signup';
 
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,6 +21,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="/product" element={<Product />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/register" element={<Signup />} />
           </Route>
         </Routes>
       </BrowserRouter>
