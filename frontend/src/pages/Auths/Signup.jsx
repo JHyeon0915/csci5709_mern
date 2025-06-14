@@ -20,14 +20,19 @@ const Signup = () => {
         });
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-            <div></div>
-            <div>
-                <img alt='logo' width={200} />
+        <div className="flex flex-col items-center justify-center h-screen">
+            <div className='w-fit-content'>
+                <img
+                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Product_Hunt_Logo.svg/2560px-Product_Hunt_Logo.svg.png' 
+                    alt='logo' 
+                    width={200}
+                />
             </div>
-            <h3>Signup</h3>
+
+            <h3 className='text-center'>Signup</h3>
+
             <Formik
-                className='mb-4'
+                className='mb-4 flex flex-col justify-center items-center'
                 initialVlaues={{
                     name: '',
                     email: '',
@@ -41,8 +46,8 @@ const Signup = () => {
             >
                 {({ isSubmitting }) => (
                     <Form>
-                        <div>
-                            <lable>Fullname</lable>
+                        <div className='mb-3'>
+                            <lable className='form-label'>Fullname</lable>
                             <Field></Field>
                             <ErrorMessage
                                 name="fullname"
@@ -51,8 +56,8 @@ const Signup = () => {
                             />
                         </div>
 
-                        <div className='mb-3'>
-                            <lable>Email</lable>
+                        <div className='mb-3 w-fit-content'>
+                            <lable className='form-label'>Email</lable>
                             <Field></Field>
                             <ErrorMessage
                                 name="email"
@@ -62,7 +67,7 @@ const Signup = () => {
                         </div>
 
                         <div className='mb-3'>
-                            <lable>Phone</lable>
+                            <lable className='form-label'>Phone</lable>
                             <Field></Field>
                             <ErrorMessage
                                 name="phone"
@@ -72,7 +77,7 @@ const Signup = () => {
                         </div>
 
                         <div className='mb-3'>
-                            <lable>Password</lable>
+                            <lable className='form-label'>Password</lable>
                             <Field></Field>
                             <ErrorMessage
                                 name="password"
@@ -82,7 +87,7 @@ const Signup = () => {
                         </div>
 
                         <div className='mb-3'>
-                            <lable>Confirm Password</lable>
+                            <lable className='form-label'>Confirm Password</lable>
                             <Field></Field>
                             <ErrorMessage
                                 name="confirmPassword"
