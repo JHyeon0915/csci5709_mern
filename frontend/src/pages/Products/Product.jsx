@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ProductItem from '../../components/ProductItem';
 import AddProductModal from '../../components/AddProductModal';
 import NoItem from '../../components/NoItem';

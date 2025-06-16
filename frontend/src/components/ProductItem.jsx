@@ -3,8 +3,8 @@ const ProductItem = ({ product, handleDelete }) => {
         <li className="h-fit-content rounded border border-secondary" style={{ width: '16rem' }}>
             <img src={product.thumbnail} alt="product image" width="100%" height="230rem" className="rounded ratio ratio-1x1"/>
             <div className="p-3">
-                <h5>{product.name}</h5>
-                <p>{product.desc}</p>
+                <h5>{product.title}</h5>
+                <p>{product.description}</p>
                 <div className="d-flex justify-content-between align-items-center">
                     <p className="m-0 text-primary"><strong>${product.price}</strong></p>
                     <div className="d-flex justify-content-between gap-1">

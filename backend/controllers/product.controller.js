@@ -26,8 +26,8 @@ export const getAllProducts = async (req, res) => {
     try {
         // Simulate fetching all products from a database
         const products = [
-            { id: 1, name: "Product 1", price: 100 },
-            { id: 2, name: "Product 2", price: 200 },
+            { id: 1, title: "Product 1", description: "Product 1 description", price: 100, image: "https://example.com/product1.jpg" },
+            { id: 2, title: "Product 2", description: "Product 1 description", price: 200, image: "https://example.com/product2.jpg" },
         ];
     
         res.status(200).json({
@@ -47,7 +47,9 @@ export const getAllProducts = async (req, res) => {
 export const createProduct = async (req, res) => {
     const product = req.body;
 
-    if (!newProduct.title || !newProduct.image || !newProduct.description || !newProduct.price) {
+    console.log("Creating product:", product);
+
+    if (!product.title || !product.image || !product.description || !product.price) {
         return res.status(400).json({ 
             success: false,
             message: "Please provide all fields",

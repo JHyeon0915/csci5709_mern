@@ -29,10 +29,10 @@ const AddProductModal = ({ modalOpen, setModalOpen }) => {
         }
 
         const newProduct = {
-            name,
-            desc,
+            title: name,
+            description: desc,
             price: parseFloat(price), // Ensure price is a number
-            thumbnail,
+            image: thumbnail,
         }
 
         dispatch(createProduct(newProduct));

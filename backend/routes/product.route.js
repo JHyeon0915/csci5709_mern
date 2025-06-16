@@ -13,10 +13,10 @@ router.get('/', getAllProducts);
 
 router.get('/:id', getProductsById);
 
-router.get('/', createProduct);
+router.post('/', createProduct);
 
-router.get('/:id', updateProduct);
+router.put('/:id', updateProduct);
 
-router.get('/:id', deleteProduct);
+router.delete('/:id', deleteProduct);
 
 export default router;
