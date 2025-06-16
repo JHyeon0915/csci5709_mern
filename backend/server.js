@@ -7,7 +7,7 @@ import productRoutes from './routes/product.route.js';
 dotenv.config(); // Load environment variables from .env file
 
 const app = express();
-const PORT = 5400;
+const PORT = 5200;
 
 app.use(cors());
 
