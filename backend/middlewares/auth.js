@@ -21,3 +21,6 @@ export const authMiddleware = (req, res, next) => {
         res.status(401).json({ message: 'Unauthorized access' });
     }
 }
+
+export const auth = authMiddleware;
+export default auth;

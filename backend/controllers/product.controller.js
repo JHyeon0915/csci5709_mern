@@ -1,3 +1,5 @@
+import Product from "../models/product.model.js";
+
 export const getProductsById = async (req, res) => {
     try {
         const id = req.params.id;

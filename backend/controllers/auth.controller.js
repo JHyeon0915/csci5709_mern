@@ -1,6 +1,6 @@
 import bycrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
+import User from '../models/user.model.js';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'product_management_secret_key';
 
