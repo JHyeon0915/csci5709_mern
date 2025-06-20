@@ -60,19 +60,22 @@ export const createProduct = async (req, res) => {
 export const updateProduct = async (req, res) => {
     try {
         const id = req.params.id;
-        const updatedProduct = await Product.findByIdandUpdate(id, req.body, { new: true });
+        const updatedProduct = await Product.findByIdAndUpdate(
+            id,
+            req.body,
+            { new: true, runValidators: true },
+        );
 
         if (!updatedProduct) {
             return res.status(404).json({ message: "Product not found" });
         }
 
-        products[index] = { ...products[index], ...req.body };
-
         res.status(200).json({
             message: "Product updated successfully",
-            data: products[index],
+            data: updatedProduct,
         });
     } catch (error) {
+        console.error("Error updating product:", error);
         res.status(500).json({ 
             message: "Internal server error",
         });
@@ -85,7 +88,7 @@ export const deleteProduct = async (req, res) => {
 
         const deletedProduct = await Product.findByIdAndDelete(id);
         
-        if (!deleteProduct) {
+        if (!deletedProduct) {
             return res.status(404).json({ message: "Product not found" });
         }
 
