@@ -1,14 +1,13 @@
 import { Link, useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions/authActions';
-import { Formik, Form, Field, ErrorMessage } from 'react-bootstrap';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
-import logo from '../../assets/logo.png';
 
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const logo = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Product_Hunt_Logo.svg/2560px-Product_Hunt_Logo.svg.png';
 
     const LoginSchema = Yup.object().shape({
         email: Yup.string()
