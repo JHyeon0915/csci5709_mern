@@ -11,7 +11,7 @@ export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
 export const signup = (values) => async (dispatch) => {
     dispatch({ type: SIGNUP_REQUEST });
     try {
-        const response = await fetch('https://csci5709-mern.onrender.com/api/auth/signup', {
+        const response = await fetch('https://csci5709-mern.onrender.com/api/auth/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
