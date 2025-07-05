@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { signup } from '../../redux/actions/authActions';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 

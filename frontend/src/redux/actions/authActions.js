@@ -8,7 +8,7 @@ export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
 
-export const singup = (values) => async (dispatch) => {
+export const signup = (values) => async (dispatch) => {
     dispatch({ type: SIGNUP_REQUEST });
     try {
         const response = await fetch('https://csci5709-mern.onrender.com/api/auth/signup', {
