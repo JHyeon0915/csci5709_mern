@@ -1,9 +1,15 @@
+import { useDispatch } from 'react-redux';
+import { signup } from '../../redux/actions/authActions';
+import { Link, useNavigate } from 'react-router-dom';
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 const Signup = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const SignupSchema = Yup.object().shape({
-        fullname: Yup.string()
+        name: Yup.string()
             .required('Fullname is required'),
         email: Yup.string()
             .email('Invalid email')
@@ -36,21 +42,30 @@ const Signup = () => {
                 initialVlaues={{
                     name: '',
                     email: '',
+                    phone: '',
                     password: '',
+                    confirmPassword: '',
                 }}
                 validationSchema={SignupSchema}
-                onSubmit={(values, { resetForm }) => {
+                onSubmit={async (values, { setSubmitting, resetForm }) => {
                     console.log('Form values:', values);
-                    resetForm();
+                    const success = await dispatch(signup(values));
+
+                    if (success) {
+                        resetForm();
+                        navigate('/products');
+                    }
+
+                    setSubmitting(false);
                 }}
             >
                 {({ isSubmitting }) => (
                     <Form>
                         <div className='mb-3'>
                             <lable className='form-label'>Fullname</lable>
-                            <Field></Field>
+                            <Field type='text' name='name' className='form-control' />
                             <ErrorMessage
-                                name="fullname"
+                                name="name"
                                 component="div"
                                 className="text-danger"
                             />
@@ -58,7 +73,7 @@ const Signup = () => {
 
                         <div className='mb-3 w-fit-content'>
                             <lable className='form-label'>Email</lable>
-                            <Field></Field>
+                            <Field type='text' name='email' className='form-control' />
                             <ErrorMessage
                                 name="email"
                                 component="div"
@@ -68,7 +83,7 @@ const Signup = () => {
 
                         <div className='mb-3'>
                             <lable className='form-label'>Phone</lable>
-                            <Field></Field>
+                            <Field type='text' name='phone' className='form-control' />
                             <ErrorMessage
                                 name="phone"
                                 component="div"
@@ -78,7 +93,7 @@ const Signup = () => {
 
                         <div className='mb-3'>
                             <lable className='form-label'>Password</lable>
-                            <Field></Field>
+                            <Field type='text' name='password' className='form-control' />
                             <ErrorMessage
                                 name="password"
                                 component="div"
@@ -88,7 +103,7 @@ const Signup = () => {
 
                         <div className='mb-3'>
                             <lable className='form-label'>Confirm Password</lable>
-                            <Field></Field>
+                            <Field type='text' name='confirmPassword' className='form-control' />
                             <ErrorMessage
                                 name="confirmPassword"
                                 component="div"
