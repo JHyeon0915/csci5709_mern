@@ -24,12 +24,27 @@ export const DELETE_PRODUCT_FAILURE = 'DELETE_PRODUCT_FAILURE';
 export const fetchProducts = () => async (dispatch) => {
     dispatch({ type: FETCH_PRODUCTS_REQUEST });
     try {
-        const response = await fetch('http://localhost:5200/api/products');
+        const response = await fetch('https://csci5709-mern.onrender.com/api/products', {
+            headers: { 
+                authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
         const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to fetch products');
+        }
+
+        if (!Array.isArray(data.data)) {
+            throw new Error('Invalid data format: Expected an array of products');
+        }
+
         dispatch({ type: FETCH_PRODUCTS_SUCCESS, payload: data.data });
     } catch (error) {
         dispatch({ type: FETCH_PRODUCTS_FAILURE, payload: error.message });
-        toast.error('Failed to fetch products');
+        toast.error(error.message || 'Something went wrong while fetching products');
     }
 };
 
@@ -37,9 +52,12 @@ export const fetchProducts = () => async (dispatch) => {
 export const createProduct = (product) => async (dispatch) => {
     dispatch({ type: CREATE_PRODUCT_REQUEST });
     try {
-        const response = await fetch('http://localhost:5200/api/products', {
+        const response = await fetch('https://csci5709-mern.onrender.com/api/products', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify(product),
         });
         const data = await response.json();
@@ -55,9 +73,12 @@ export const createProduct = (product) => async (dispatch) => {
 export const updateProduct = (product) => async (dispatch) => {
     dispatch({ type: UPDATE_PRODUCT_REQUEST });
     try {
-        const response = await fetch(`http://localhost:5200/api/products/${product.id}`, {
+        const response = await fetch(`https://csci5709-mern.onrender.com/api/products/${product.id}`, {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify(product),
         });
         const data = await response.json();
@@ -73,8 +94,12 @@ export const updateProduct = (product) => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch) => {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
     try {
-        const response = await fetch(`http://localhost:5200/api/products/${id}`, {
+        const response = await fetch(`https://csci5709-mern.onrender.com/api/products/${id}`, {
             method: 'DELETE',
+            headers: { 
+                authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+            },
         });
         const data = await response.json();
         dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: data });
