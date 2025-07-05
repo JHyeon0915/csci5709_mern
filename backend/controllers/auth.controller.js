@@ -1,4 +1,4 @@
-import bycrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.model.js';
 
@@ -13,7 +13,7 @@ export const register = async (req, res) => {
     }
 
     try {
-        const hashedPassword = await bycrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser = new User({ name, email, password: hashedPassword });
         await newUser.save();
@@ -34,7 +34,7 @@ export const login = async (req, res) => {
         return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    const isMatch = await bycrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
         return res.status(401).json({ message: "Invalid email or password" });
     }
