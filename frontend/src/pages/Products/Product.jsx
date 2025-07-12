@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import ProductItem from '../../components/ProductItem';
 import AddProductModal from '../../components/AddProductModal';
 import NoItem from '../../components/NoItem';
+import SkeletonCard from '../../components/SkeletonCard';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     fetchProducts,
@@ -32,7 +33,7 @@ const Product = () => {
 
     return(
         <div style={{ paddingLeft: '7rem', paddingRight: '7rem'}}>
-            {loading && <div>fetching data...</div>}
+            { loading && <SkeletonCard /> }
             <div className="d-flex justify-content-end">
                 <button
                   className="d-flex align-items-center gap-1 w-fit-content my-4 bg-primary text-white rounded"
