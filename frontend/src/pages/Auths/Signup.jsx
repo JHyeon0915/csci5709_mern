@@ -39,7 +39,7 @@ const Signup = () => {
 
             <Formik
                 className='mb-4 flex flex-col justify-center items-center'
-                initialVlaues={{
+                initialValues={{
                     name: '',
                     email: '',
                     phone: '',
@@ -49,7 +49,7 @@ const Signup = () => {
                 validationSchema={SignupSchema}
                 onSubmit={async (values, { setSubmitting, resetForm }) => {
                     console.log('Form values:', values);
-                    const success = await dispatch(signup(values));
+                    const success = dispatch(signup(values));
 
                     if (success) {
                         resetForm();
@@ -62,7 +62,7 @@ const Signup = () => {
                 {({ isSubmitting }) => (
                     <Form>
                         <div className='mb-3'>
-                            <lable className='form-label'>Fullname</lable>
+                            <label className='form-label'>Fullname</label>
                             <Field type='text' name='name' className='form-control' />
                             <ErrorMessage
                                 name="name"
@@ -72,7 +72,7 @@ const Signup = () => {
                         </div>
 
                         <div className='mb-3 w-fit-content'>
-                            <lable className='form-label'>Email</lable>
+                            <label className='form-label'>Email</label>
                             <Field type='text' name='email' className='form-control' />
                             <ErrorMessage
                                 name="email"
@@ -82,7 +82,7 @@ const Signup = () => {
                         </div>
 
                         <div className='mb-3'>
-                            <lable className='form-label'>Phone</lable>
+                            <label className='form-label'>Phone</label>
                             <Field type='text' name='phone' className='form-control' />
                             <ErrorMessage
                                 name="phone"
@@ -92,8 +92,8 @@ const Signup = () => {
                         </div>
 
                         <div className='mb-3'>
-                            <lable className='form-label'>Password</lable>
-                            <Field type='text' name='password' className='form-control' />
+                            <label className='form-label'>Password</label>
+                            <Field type='password' name='password' className='form-control' />
                             <ErrorMessage
                                 name="password"
                                 component="div"
@@ -102,8 +102,8 @@ const Signup = () => {
                         </div>
 
                         <div className='mb-3'>
-                            <lable className='form-label'>Confirm Password</lable>
-                            <Field type='text' name='confirmPassword' className='form-control' />
+                            <label className='form-label'>Confirm Password</label>
+                            <Field type='password' name='confirmPassword' className='form-control' />
                             <ErrorMessage
                                 name="confirmPassword"
                                 component="div"

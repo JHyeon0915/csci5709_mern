@@ -1,20 +1,42 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
 
 const Navigator = () => {
+    const navigate = useNavigate();
+    
+    const isLoggedIn = !!localStorage.getItem('token');
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+    };
+
     return(
-        <nav className='d-flex align-itmes-center'>
-            <ul className='list-unstyled list-inline my-0'>
-                <li className='list-inline-item'>
-                    <Link className='text-dark text-decoration-none' to='/'>Home</Link>
-                </li>
-                <li className='list-inline-item'>
-                    <Link className='text-dark text-decoration-none' to='/product'>Product</Link>
-                </li>
-                <li className='list-inline-item'>
-                    <Link className='text-dark text-decoration-none' to='/contact'>Contact</Link>
-                </li>
-            </ul>
-        </nav>
+        <Navbar expand='lg' className='bg-body-tertiary'>
+            <Container className='d-flex'>
+                <Navbar.Brand href="/">ProdManage</Navbar.Brand>
+                <Navbar.Toggle aria-controls='basic-navbar-nav' />
+                <Navbar.Collapse id='basic-navbar-nav'>
+                    <Nav className='mx-auto'>
+                        <Nav.Link as={Link} to='/'>Home</Nav.Link>
+                        <Nav.Link as={Link} to='/product'>Product</Nav.Link>
+                        <Nav.Link as={Link} to='/contact'>Contact</Nav.Link>
+                    </Nav>
+                    <Nav className='ms-auto'>
+                        {isLoggedIn ? (
+                            <Button variant='outline-danger' onClick={handleLogout}>Logout</Button>
+                        ) : (
+                            <Nav.Link as={Link} to='/login'>
+                                <Button variant='outline-success'>Login</Button>
+                            </Nav.Link>
+                        )}
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 }
 
