@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 5400;
 
 const allowedOrigins = [
     'http://localhost:5173', // React app
+    'http://localhost:5400', // Backend server
     'https://csci5709mern.netlify.app', // Production URL
 ];
 

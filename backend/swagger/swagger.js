@@ -29,7 +29,8 @@ const options = {
                 url: 'http://localhost:5400',
             },
         ],
-        apis: ['../routes/*.js'], // Path to the API docs
     },
     apis: ['../routes/*.js'], // Path to the API docs
 }
+
+export default swaggerJsDoc(options);
