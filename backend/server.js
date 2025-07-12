@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5400;
 
 const allowedOrigins = [
     'http://localhost:5173', // React app
-    'https://csci5709-mern.netlify.app', // Production URL
+    'https://csci5709mern.netlify.app', // Production URL
 ];
 
 app.use(cors({
