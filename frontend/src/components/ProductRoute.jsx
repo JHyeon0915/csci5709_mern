@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router';
 
 const ProductRoute = ({ children }) => {
   const token = localStorage.getItem('token');

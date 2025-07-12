@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Router, Routes, Route } from 'react-router';
+import { BrowserRouter, Routes, Route } from 'react-router';
 import Header from './components/Header';
 import ProductRoute from './components/ProductRoute';
 
@@ -18,7 +18,7 @@ const Login = lazy(() => import('./pages/Auths/Login'));
 function App() {
   return (
     <>
-      <Router>
+      <BrowserRouter>
         <Header />
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
@@ -35,7 +35,7 @@ function App() {
             </Route>
           </Routes>
         </Suspense>
-      </Router>
+      </BrowserRouter>
       <ToastContainer position="top-right" />
     </>
   )

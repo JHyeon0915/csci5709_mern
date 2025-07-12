@@ -16,20 +16,20 @@ const Navigator = () => {
 
     return(
         <Navbar expand='lg' className='bg-body-tertiary'>
-            <Container>
+            <Container className='d-flex'>
                 <Navbar.Brand href="/">ProdManage</Navbar.Brand>
                 <Navbar.Toggle aria-controls='basic-navbar-nav' />
                 <Navbar.Collapse id='basic-navbar-nav'>
                     <Nav className='mx-auto'>
-                        <Nav.Link to='/'>Home</Nav.Link>
-                        <Nav.Link to='/product'>Product</Nav.Link>
-                        <Nav.Link to='/contact'>Contact</Nav.Link>
+                        <Nav.Link as={Link} to='/'>Home</Nav.Link>
+                        <Nav.Link as={Link} to='/product'>Product</Nav.Link>
+                        <Nav.Link as={Link} to='/contact'>Contact</Nav.Link>
                     </Nav>
                     <Nav className='ms-auto'>
                         {isLoggedIn ? (
                             <Button variant='outline-danger' onClick={handleLogout}>Logout</Button>
                         ) : (
-                            <Nav.Link to='/login'>
+                            <Nav.Link as={Link} to='/login'>
                                 <Button variant='outline-success'>Login</Button>
                             </Nav.Link>
                         )}
