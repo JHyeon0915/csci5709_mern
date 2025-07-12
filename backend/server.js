@@ -13,7 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 5400;
 
 const allowedOrigins = [
-    'http://localhost:3000', // React app
+    'http://localhost:5173', // React app
     'https://csci5709-mern.netlify.app', // Production URL
 ];
 
